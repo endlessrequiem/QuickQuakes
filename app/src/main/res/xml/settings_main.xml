@@ -13,7 +13,6 @@
         android:title="@string/settings_order_by_label" />
 
     <EditTextPreference
-        android:defaultValue="3"
         android:inputType="numberDecimal"
         android:key="@string/settings_min_magnitude_key"
         android:selectAllOnFocus="true"

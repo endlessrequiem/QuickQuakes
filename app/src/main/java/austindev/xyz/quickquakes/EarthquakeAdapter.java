@@ -29,35 +29,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * An {@link EarthquakeAdapter} knows how to create a list item layout for each earthquake
- * in the data source (a list of {@link Earthquake} objects).
- *
- * These list item layouts will be provided to an adapter view like ListView
- * to be displayed to the user.
- */
+
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    /**
-     * The part of the location string from the USGS service that we use to determine
-     * whether or not there is a location offset present ("5km N of Cairo, Egypt").
-     */
+
     private static final String LOCATION_SEPARATOR = " of ";
 
-    /**
-     * Constructs a new {@link EarthquakeAdapter}.
-     *
-     * @param context of the app
-     * @param earthquakes is the list of earthquakes, which is the data source of the adapter
-     */
+
     public EarthquakeAdapter(Context context, List<Earthquake> earthquakes) {
         super(context, 0, earthquakes);
     }
 
-    /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
-     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if there is an existing list item view (called convertView) that we can reuse,
@@ -146,11 +128,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return listItemView;
     }
 
-    /**
-     * Return the color for the magnitude circle based on the intensity of the earthquake.
-     *
-     * @param magnitude of the earthquake
-     */
+
     private int getMagnitudeColor(double magnitude) {
         int magnitudeColorResourceId;
         int magnitudeFloor = (int) Math.floor(magnitude);
@@ -191,26 +169,17 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
     }
 
-    /**
-     * Return the formatted magnitude string showing 1 decimal place (i.e. "3.2")
-     * from a decimal magnitude value.
-     */
+
     private String formatMagnitude(double magnitude) {
         DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
         return magnitudeFormat.format(magnitude);
     }
 
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
     private String formatDate(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
         return dateFormat.format(dateObject);
     }
 
-    /**
-     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
-     */
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
