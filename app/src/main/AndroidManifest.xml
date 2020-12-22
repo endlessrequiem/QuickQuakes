@@ -28,6 +28,13 @@
                 android:value=".EarthquakeActivity"/>
         </activity>
 
+        <activity
+            android:name=".EarthquakeDetailActivity"
+            android:label="@string/details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EarthquakeActivity"/>
+        </activity>
 
     </application>
 

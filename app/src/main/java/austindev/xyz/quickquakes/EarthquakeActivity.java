@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,14 @@ public class EarthquakeActivity extends AppCompatActivity
 
     private TextView mEmptyStateTextView;
 
+    SharedPreferences currLocation;
+    SharedPreferences currMagnitude;
+    SharedPreferences currTime;
+    SharedPreferences currDate;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +57,15 @@ public class EarthquakeActivity extends AppCompatActivity
 
         mEmptyStateTextView = findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyStateTextView);
+
+        currLocation = this.getSharedPreferences(
+                getString(R.string.location_key), Context.MODE_PRIVATE);
+        currMagnitude = this.getSharedPreferences(
+                getString(R.string.magnitude_key),Context.MODE_PRIVATE);
+        currTime = this.getSharedPreferences(
+                getString(R.string.time_key),Context.MODE_PRIVATE);
+        currDate = this.getSharedPreferences(
+                getString(R.string.date_key),Context.MODE_PRIVATE);
 
         // Create a new adapter that takes an empty list of earthquakes as input
         mAdapter = new EarthquakeAdapter(this, new ArrayList<>());
@@ -67,14 +86,44 @@ public class EarthquakeActivity extends AppCompatActivity
             // Find the current earthquake that was clicked on
             Earthquake currentEarthquake = mAdapter.getItem(position);
 
-            // Convert the String URL into a URI object (to pass into the Intent constructor)
-            Uri earthquakeUri = Uri.parse(currentEarthquake.getUrl());
+            String earthquakeLocation = currentEarthquake.getLocation();
 
-            // Create a new intent to view the earthquake URI
-            Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+            DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+            String earthquakeMagnitude = magnitudeFormat.format(currentEarthquake.getMagnitude());
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+            String earthquakeDate = dateFormat.format(currentEarthquake.getTimeInMilliseconds());
+
+            SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+            String earthquakeTime = timeFormat.format(currentEarthquake.getTimeInMilliseconds());
+
+            SharedPreferences.Editor currLocationEditor = currLocation.edit();
+            currLocationEditor.putString(getString(R.string.location_key), String.valueOf(earthquakeLocation));
+            currLocationEditor.apply();
+
+            SharedPreferences.Editor currMagnitudeEditor = currMagnitude.edit();
+            currMagnitudeEditor.putString(getString(R.string.magnitude_key), earthquakeMagnitude);
+            currMagnitudeEditor.apply();
+
+            SharedPreferences.Editor currTimeEditor = currTime.edit();
+            currTimeEditor.putString(getString(R.string.time_key), String.valueOf(earthquakeTime));
+            currTimeEditor.apply();
+
+            SharedPreferences.Editor currDateEditor = currDate.edit();
+            currDateEditor.putString(getString(R.string.date_key), String.valueOf(earthquakeDate));
+            currDateEditor.apply();
+
+
+            Intent detail = new Intent(EarthquakeActivity.this, EarthquakeDetailActivity.class);
 
             // Send the intent to launch a new activity
-            startActivity(websiteIntent);
+            startActivity(detail);
+
+            // Convert the String URL into a URI object (to pass into the Intent constructor)
+            //Uri earthquakeUri = Uri.parse(currentEarthquake.getUrl());
+
+            // Create a new intent to view the earthquake URI
+            //Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
         });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -103,6 +152,7 @@ public class EarthquakeActivity extends AppCompatActivity
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
     }
+
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
@@ -195,4 +245,5 @@ public class EarthquakeActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

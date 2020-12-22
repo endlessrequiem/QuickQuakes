@@ -16,6 +16,7 @@
 package austindev.xyz.quickquakes;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.content.SharedPreferences;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
 
     private static final String LOCATION_SEPARATOR = " of ";
+    static EarthquakeDetailActivity earthquakeDetailActivity = new EarthquakeDetailActivity();
+
 
 
     public EarthquakeAdapter(Context context, List<Earthquake> earthquakes) {
@@ -67,6 +71,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         int magnitudeColor = getMagnitudeColor(currentEarthquake.getMagnitude());
         // Set the color on the magnitude circle
         magnitudeCircle.setColor(magnitudeColor);
+        
 
         // Get the original location string from the Earthquake object,
         // which can be in the format of "5km N of Cairo, Egypt" or "Pacific-Antarctic Ridge".
@@ -129,7 +134,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     }
 
 
-    private int getMagnitudeColor(double magnitude) {
+    public int getMagnitudeColor(double magnitude) {
         int magnitudeColorResourceId;
         int magnitudeFloor = (int) Math.floor(magnitude);
         switch (magnitudeFloor) {
