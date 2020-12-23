@@ -41,8 +41,6 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         earthquakeTimeInfo = getSharedPreferences(getString(R.string.time_key), Context.MODE_PRIVATE);
         earthquakeUrlInfo = getSharedPreferences(getString(R.string.url_key), Context.MODE_PRIVATE);
 
-
-
         String currLocation  = earthquakeLocationInfo.getString(getString(R.string.location_key), getResources().getString(R.string.location_default));
         String currMagnitude = earthquakeMagnitudeInfo.getString(getString(R.string.magnitude_key), getResources().getString(R.string.magnitude_default));
         String currTime = earthquakeTimeInfo.getString(getString(R.string.time_key), getResources().getString(R.string.time_default));
@@ -60,13 +58,10 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         magnitudeCircle.setColor(magnitudeInt);
         getMagnitudeDescription(magnitudeDouble);
 
-        linkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri earthquakeLink = Uri.parse(urlString);
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeLink);
-                startActivity(websiteIntent);
-            }
+        linkButton.setOnClickListener(v -> {
+            Uri earthquakeLink = Uri.parse(urlString);
+            Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeLink);
+            startActivity(websiteIntent);
         });
 
     }

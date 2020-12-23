@@ -26,13 +26,14 @@
 
             <TextView
                 android:id="@+id/magnitude"
-                android:layout_width="67dp"
-                android:layout_height="66dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:background="@drawable/magnitude_circle"
                 android:gravity="center"
                 android:text="0.0"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/location"
