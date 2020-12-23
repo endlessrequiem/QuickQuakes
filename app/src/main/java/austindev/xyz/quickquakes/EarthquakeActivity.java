@@ -42,6 +42,7 @@ public class EarthquakeActivity extends AppCompatActivity
     SharedPreferences currMagnitude;
     SharedPreferences currTime;
     SharedPreferences currDate;
+    SharedPreferences currUrl;
 
 
 
@@ -66,6 +67,8 @@ public class EarthquakeActivity extends AppCompatActivity
                 getString(R.string.time_key),Context.MODE_PRIVATE);
         currDate = this.getSharedPreferences(
                 getString(R.string.date_key),Context.MODE_PRIVATE);
+        currUrl = this.getSharedPreferences(
+                getString(R.string.url_key),Context.MODE_PRIVATE);
 
         // Create a new adapter that takes an empty list of earthquakes as input
         mAdapter = new EarthquakeAdapter(this, new ArrayList<>());
@@ -87,6 +90,9 @@ public class EarthquakeActivity extends AppCompatActivity
             Earthquake currentEarthquake = mAdapter.getItem(position);
 
             String earthquakeLocation = currentEarthquake.getLocation();
+
+            // Convert the String URL into a URI object (to pass into the Intent constructor)
+            String earthquakeUri = currentEarthquake.getUrl();
 
             DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
             String earthquakeMagnitude = magnitudeFormat.format(currentEarthquake.getMagnitude());
@@ -113,14 +119,17 @@ public class EarthquakeActivity extends AppCompatActivity
             currDateEditor.putString(getString(R.string.date_key), String.valueOf(earthquakeDate));
             currDateEditor.apply();
 
+            SharedPreferences.Editor currUrlEditor = currUrl.edit();
+            currUrlEditor.putString(getString(R.string.url_key), String.valueOf(earthquakeUri));
+            currUrlEditor.apply();
+
 
             Intent detail = new Intent(EarthquakeActivity.this, EarthquakeDetailActivity.class);
 
             // Send the intent to launch a new activity
             startActivity(detail);
 
-            // Convert the String URL into a URI object (to pass into the Intent constructor)
-            //Uri earthquakeUri = Uri.parse(currentEarthquake.getUrl());
+
 
             // Create a new intent to view the earthquake URI
             //Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);

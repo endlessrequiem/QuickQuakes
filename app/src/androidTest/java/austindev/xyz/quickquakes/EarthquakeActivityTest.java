@@ -54,6 +54,12 @@ public class EarthquakeActivityTest {
     }
 
     @Test
+    public void listItemButtonTest(){
+        onView(withId(R.id.list)).perform(click());
+        onView(withId(R.id.linkButton)).perform(click());
+    }
+
+    @Test
     public void listItemTest(){
         onView(withId(R.id.list)).perform(click());
         onView(isRoot()).perform(ViewActions.pressBack());

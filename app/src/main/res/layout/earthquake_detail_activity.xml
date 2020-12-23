@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5sp"
                 android:text="Location"
-                android:textAlignment="gravity"
+                android:textAlignment="center"
                 android:textSize="30sp" />
 
             <TextView
@@ -76,6 +76,14 @@
                 android:text="@string/source"
                 android:textSize="12sp"
                 android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/linkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/linkButton"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </ScrollView>

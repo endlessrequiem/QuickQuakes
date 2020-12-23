@@ -1,9 +1,13 @@
 package austindev.xyz.quickquakes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +19,7 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
     SharedPreferences earthquakeMagnitudeInfo;
     SharedPreferences earthquakeDateInfo;
     SharedPreferences earthquakeTimeInfo;
+    SharedPreferences earthquakeUrlInfo;
     TextView description;
 
 
@@ -28,17 +33,21 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         TextView magnitude = findViewById(R.id.magnitude);
         TextView time = findViewById(R.id.currTime);
         TextView date = findViewById(R.id.currDate);
+        Button linkButton = findViewById(R.id.linkButton);
 
         earthquakeLocationInfo = getSharedPreferences(getString(R.string.location_key),Context.MODE_PRIVATE);
         earthquakeMagnitudeInfo = getSharedPreferences(getString(R.string.magnitude_key),Context.MODE_PRIVATE);
         earthquakeDateInfo = getSharedPreferences(getString(R.string.date_key), Context.MODE_PRIVATE);
         earthquakeTimeInfo = getSharedPreferences(getString(R.string.time_key), Context.MODE_PRIVATE);
+        earthquakeUrlInfo = getSharedPreferences(getString(R.string.url_key), Context.MODE_PRIVATE);
+
 
 
         String currLocation  = earthquakeLocationInfo.getString(getString(R.string.location_key), getResources().getString(R.string.location_default));
         String currMagnitude = earthquakeMagnitudeInfo.getString(getString(R.string.magnitude_key), getResources().getString(R.string.magnitude_default));
         String currTime = earthquakeTimeInfo.getString(getString(R.string.time_key), getResources().getString(R.string.time_default));
         String currDate = earthquakeDateInfo.getString(getString(R.string.date_key), getResources().getString(R.string.date_default));
+        String urlString = earthquakeUrlInfo.getString(getString(R.string.url_key), getResources().getString(R.string.url_default));
 
         location.setText(currLocation);
         magnitude.setText(currMagnitude);
@@ -50,6 +59,15 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         int magnitudeInt = getMagnitudeColor(magnitudeDouble);
         magnitudeCircle.setColor(magnitudeInt);
         getMagnitudeDescription(magnitudeDouble);
+
+        linkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri earthquakeLink = Uri.parse(urlString);
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeLink);
+                startActivity(websiteIntent);
+            }
+        });
 
     }
 

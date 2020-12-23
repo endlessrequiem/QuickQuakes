@@ -4,6 +4,7 @@
     <!-- Title for the application. [CHAR LIMIT=12] -->
     <string name="app_name">Quick Quakes</string>
     <string name="details">Earthquake Details</string>
+    <string name="linkButton">See on USGS Website</string>
 
     <!-- Default text to show with the earthquake location ("Near the Pacific-Antarctic Ridge")
          if no specific kilometer distance from the primary location is given [CHAR LIMIT=30] -->
@@ -50,6 +51,9 @@
 
     <string name="time_key" translatable="false">time</string>
     <string name="time_default" translatable="false">00:00</string>
+
+    <string name="url_key" translatable="false">link</string>
+    <string name="url_default" translatable="false">usgs.gov</string>
 
     <!-- Magnitude Scale -->
     <string name="source">Source: USGS</string>
