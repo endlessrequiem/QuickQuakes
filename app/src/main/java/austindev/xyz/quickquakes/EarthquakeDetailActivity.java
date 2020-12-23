@@ -1,21 +1,13 @@
 package austindev.xyz.quickquakes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import java.util.ArrayList;
-import austindev.xyz.quickquakes.EarthquakeAdapter;
-
 
 public class EarthquakeDetailActivity extends AppCompatActivity {
 
@@ -23,6 +15,8 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
     SharedPreferences earthquakeMagnitudeInfo;
     SharedPreferences earthquakeDateInfo;
     SharedPreferences earthquakeTimeInfo;
+    TextView description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +45,11 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         time.setText(currTime);
         date.setText(currDate);
 
+        double magnitudeDouble = Double.parseDouble(currMagnitude);
         GradientDrawable magnitudeCircle = (GradientDrawable) magnitude.getBackground();
-        // Get the appropriate background color based on the current earthquake magnitude
-        int magnitudeColor = getMagnitudeColor(Double.parseDouble(currMagnitude));
-        // Set the color on the magnitude circle
-        magnitudeCircle.setColor(magnitudeColor);
+        int magnitudeInt = getMagnitudeColor(magnitudeDouble);
+        magnitudeCircle.setColor(magnitudeInt);
+        getMagnitudeDescription(magnitudeDouble);
 
     }
 
@@ -97,6 +91,45 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         }
 
         return ContextCompat.getColor(this, magnitudeColorResourceId);
+    }
+
+    public void getMagnitudeDescription(double magnitudeDouble) {
+        int magnitudeDescFloor = (int) Math.floor(magnitudeDouble);
+        description = findViewById(R.id.description);
+        switch (magnitudeDescFloor) {
+            case 0:
+            case 1:
+                description.setText(getString(R.string.one));
+                break;
+            case 2:
+                description.setText(getString(R.string.two));
+                break;
+            case 3:
+                description.setText(getString(R.string.three));
+                break;
+            case 4:
+                description.setText(getString(R.string.four));
+                break;
+            case 5:
+                description.setText(getString(R.string.five));
+                break;
+            case 6:
+                description.setText(getString(R.string.six));
+                break;
+            case 7:
+                description.setText(getString(R.string.seven));
+                break;
+            case 8:
+                description.setText(getString(R.string.eight));
+                break;
+            case 9:
+                description.setText(getString(R.string.nine));
+                break;
+            default:
+                description.setText(getString(R.string.defScale));
+                break;
+        }
+
     }
 
 

@@ -51,4 +51,16 @@
     <string name="time_key" translatable="false">time</string>
     <string name="time_default" translatable="false">00:00</string>
 
+    <!-- Magnitude Scale -->
+    <string name="source">Source: USGS</string>
+    <string name="one">Microearthquake, not felt, or felt rarely.</string>
+    <string name="two">Felt slightly by some people. No damage to buildings.	</string>
+    <string name="three">Often felt by people, but very rarely causes damage. Shaking of indoor objects can be noticeable.	</string>
+    <string name="four">Noticeable shaking of indoor objects and rattling noises. Felt by most people in the affected area. Slightly felt outside. Generally causes zero to minimal damage. Moderate to significant damage very unlikely. Some objects may fall off shelves or be knocked over.</string>
+    <string name="five">Can cause damage of varying severity to poorly constructed buildings. Zero to slight damage to all other buildings. Felt by everyone.</string>
+    <string name="six">Damage to a moderate number of well-built structures in populated areas. Earthquake-resistant structures survive with slight to moderate damage. Poorly designed structures receive moderate to severe damage. Felt in wider areas; up to hundreds of miles/kilometers from the epicenter. Strong to violent shaking in epicentral area.</string>
+    <string name="seven">Causes damage to most buildings, some to partially or completely collapse or receive severe damage. Well-designed structures are likely to receive damage. Felt across great distances with major damage mostly limited to 250 km from epicenter.</string>
+    <string name="eight">Major damage to buildings, structures likely to be destroyed. Will cause moderate to heavy damage to sturdy or earthquake-resistant buildings. Damaging in large areas. Felt in extremely large regions.</string>
+    <string name="nine">At or near total destruction – severe damage or collapse to all buildings. Heavy damage and shaking extends to distant locations. Permanent changes in ground topography.</string>
+    <string name="defScale">Default</string>
 </resources>

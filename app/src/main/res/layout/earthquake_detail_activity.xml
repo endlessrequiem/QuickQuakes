@@ -5,70 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="14dp"
-        android:padding="5sp"
-        android:text="Location"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/currTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/magnitude" />
 
-    <TextView
-        android:id="@+id/magnitude"
-        android:layout_width="67dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/magnitude_circle"
-        android:gravity="center"
-        android:text="0.0"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
-
-    <TextView
-        android:id="@+id/currTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginEnd="142dp"
-        android:padding="5sp"
-        android:text="Time"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/currDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
-
-    <TextView
-        android:id="@+id/currDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="350dp"
-        android:padding="5sp"
-        android:text="Date"
-        android:textAlignment="center"
-        android:textSize="18sp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currTime" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical"
+            android:layout_marginTop="50sp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+
+            <TextView
+                android:id="@+id/magnitude"
+                android:layout_width="67dp"
+                android:layout_height="66dp"
+                android:background="@drawable/magnitude_circle"
+                android:gravity="center"
+                android:text="0.0"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="Location"
+                android:textAlignment="gravity"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/currTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="5sp"
+                android:text="Time"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/currDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="Date"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nine"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/source"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

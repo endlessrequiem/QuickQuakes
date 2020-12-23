@@ -56,5 +56,6 @@ public class EarthquakeActivityTest {
     @Test
     public void listItemTest(){
         onView(withId(R.id.list)).perform(click());
+        onView(isRoot()).perform(ViewActions.pressBack());
     }
 }
