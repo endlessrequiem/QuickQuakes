@@ -57,6 +57,7 @@ public class EarthquakeActivity extends AppCompatActivity
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = findViewById(R.id.list);
 
+
         mEmptyStateTextView = findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyStateTextView);
 
@@ -224,7 +225,6 @@ public class EarthquakeActivity extends AppCompatActivity
 
         // Send the intent to launch a new activity
         startActivity(detail);
-        overridePendingTransition(0, 0);
     }
 
     @Override
@@ -253,6 +253,12 @@ public class EarthquakeActivity extends AppCompatActivity
             startActivity(settingsIntent);
             return true;
         }
+        if (id == R.id.historicEarthquakes) {
+            Intent historicEarthquakesIntent = new Intent(this, HistoricEarthquakesActivity.class);
+            startActivity(historicEarthquakesIntent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

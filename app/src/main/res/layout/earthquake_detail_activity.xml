@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:padding="5sp"
                 android:text="Time"
                 android:textAlignment="center"
                 android:textSize="18sp" />
@@ -58,7 +57,6 @@
                 android:id="@+id/currDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5sp"
                 android:text="Date"
                 android:textAlignment="center"
                 android:textSize="18sp" />
@@ -67,6 +65,7 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5sp"
                 android:text="@string/nine"
                 android:textAlignment="center" />
 

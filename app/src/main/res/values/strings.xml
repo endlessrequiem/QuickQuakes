@@ -4,7 +4,8 @@
     <!-- Title for the application. [CHAR LIMIT=12] -->
     <string name="app_name">Quick Quakes</string>
     <string name="details">Earthquake Details</string>
-    <string name="linkButton">See on USGS Website</string>
+    <string name="linkButton">See More</string>
+    <string name="historicData">Historic Earthquakes</string>
 
     <!-- Default text to show with the earthquake location ("Near the Pacific-Antarctic Ridge")
          if no specific kilometer distance from the primary location is given [CHAR LIMIT=30] -->
@@ -67,4 +68,9 @@
     <string name="eight">8.0–8.9: Major damage to buildings, structures likely to be destroyed. Will cause moderate to heavy damage to sturdy or earthquake-resistant buildings. Damaging in large areas. Felt in extremely large regions.</string>
     <string name="nine">9.0+: At or near total destruction – severe damage or collapse to all buildings. Heavy damage and shaking extends to distant locations. Permanent changes in ground topography.</string>
     <string name="defScale">Default</string>
+
+    <!-- Historic Earthquake locations -->
+    <string name="valdivia">City of Valdivia, Chile</string>
+    <string name="pwsAlaska">Prince William Sound, Alaska</string>
+
 </resources>

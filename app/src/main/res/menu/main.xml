@@ -28,4 +28,7 @@
         android:orderInCategory="1"
         android:title="@string/settings_menu_item"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/historicEarthquakes"
+        android:title="@string/historicData" />
 </menu>
