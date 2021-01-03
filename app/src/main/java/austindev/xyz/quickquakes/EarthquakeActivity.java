@@ -22,6 +22,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class EarthquakeActivity extends AppCompatActivity
         implements LoaderCallbacks<List<Earthquake>>,
@@ -87,52 +88,8 @@ public class EarthquakeActivity extends AppCompatActivity
         // to open a website with more information about the selected earthquake.
         earthquakeListView.setOnItemClickListener((adapterView, view, position, l) -> {
             // Find the current earthquake that was clicked on
-            Earthquake currentEarthquake = mAdapter.getItem(position);
+            earthquakeListItem(position);
 
-            String earthquakeLocation = currentEarthquake.getLocation();
-
-            // Convert the String URL into a URI object (to pass into the Intent constructor)
-            String earthquakeUri = currentEarthquake.getUrl();
-
-            DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
-            String earthquakeMagnitude = magnitudeFormat.format(currentEarthquake.getMagnitude());
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-            String earthquakeDate = dateFormat.format(currentEarthquake.getTimeInMilliseconds());
-
-            SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-            String earthquakeTime = timeFormat.format(currentEarthquake.getTimeInMilliseconds());
-
-            SharedPreferences.Editor currLocationEditor = currLocation.edit();
-            currLocationEditor.putString(getString(R.string.location_key), String.valueOf(earthquakeLocation));
-            currLocationEditor.apply();
-
-            SharedPreferences.Editor currMagnitudeEditor = currMagnitude.edit();
-            currMagnitudeEditor.putString(getString(R.string.magnitude_key), earthquakeMagnitude);
-            currMagnitudeEditor.apply();
-
-            SharedPreferences.Editor currTimeEditor = currTime.edit();
-            currTimeEditor.putString(getString(R.string.time_key), String.valueOf(earthquakeTime));
-            currTimeEditor.apply();
-
-            SharedPreferences.Editor currDateEditor = currDate.edit();
-            currDateEditor.putString(getString(R.string.date_key), String.valueOf(earthquakeDate));
-            currDateEditor.apply();
-
-            SharedPreferences.Editor currUrlEditor = currUrl.edit();
-            currUrlEditor.putString(getString(R.string.url_key), String.valueOf(earthquakeUri));
-            currUrlEditor.apply();
-
-
-            Intent detail = new Intent(EarthquakeActivity.this, EarthquakeDetailActivity.class);
-
-            // Send the intent to launch a new activity
-            startActivity(detail);
-
-
-
-            // Create a new intent to view the earthquake URI
-            //Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
         });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -225,6 +182,51 @@ public class EarthquakeActivity extends AppCompatActivity
         }
     }
 
+    public void earthquakeListItem(int position) {
+        Earthquake currentEarthquake = mAdapter.getItem(position);
+
+        String earthquakeLocation = currentEarthquake.getLocation();
+
+        // Convert the String URL into a URI object (to pass into the Intent constructor)
+        String earthquakeUri = currentEarthquake.getUrl();
+
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        String earthquakeMagnitude = magnitudeFormat.format(currentEarthquake.getMagnitude());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.getDefault());
+        String earthquakeDate = dateFormat.format(currentEarthquake.getTimeInMilliseconds());
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
+        String earthquakeTime = timeFormat.format(currentEarthquake.getTimeInMilliseconds());
+
+        SharedPreferences.Editor currLocationEditor = currLocation.edit();
+        currLocationEditor.putString(getString(R.string.location_key), String.valueOf(earthquakeLocation));
+        currLocationEditor.apply();
+
+        SharedPreferences.Editor currMagnitudeEditor = currMagnitude.edit();
+        currMagnitudeEditor.putString(getString(R.string.magnitude_key), earthquakeMagnitude);
+        currMagnitudeEditor.apply();
+
+        SharedPreferences.Editor currTimeEditor = currTime.edit();
+        currTimeEditor.putString(getString(R.string.time_key), String.valueOf(earthquakeTime));
+        currTimeEditor.apply();
+
+        SharedPreferences.Editor currDateEditor = currDate.edit();
+        currDateEditor.putString(getString(R.string.date_key), String.valueOf(earthquakeDate));
+        currDateEditor.apply();
+
+        SharedPreferences.Editor currUrlEditor = currUrl.edit();
+        currUrlEditor.putString(getString(R.string.url_key), String.valueOf(earthquakeUri));
+        currUrlEditor.apply();
+
+
+        Intent detail = new Intent(EarthquakeActivity.this, EarthquakeDetailActivity.class);
+
+        // Send the intent to launch a new activity
+        startActivity(detail);
+        overridePendingTransition(0, 0);
+    }
+
     @Override
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
         // Loader reset, so we can clear out our existing data.
@@ -242,9 +244,8 @@ public class EarthquakeActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
             Intent refresh = new Intent(this, EarthquakeActivity.class);
-            finish();
-            overridePendingTransition(0, 0);
             startActivity(refresh);
+            overridePendingTransition(0, 0);
             return true;
         }
         if (id == R.id.action_settings) {

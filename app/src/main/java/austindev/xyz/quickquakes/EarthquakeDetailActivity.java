@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,11 +30,15 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         setContentView(R.layout.earthquake_detail_activity);
 
 
+
         TextView location = findViewById(R.id.location);
         TextView magnitude = findViewById(R.id.magnitude);
         TextView time = findViewById(R.id.currTime);
         TextView date = findViewById(R.id.currDate);
         Button linkButton = findViewById(R.id.linkButton);
+        ProgressBar progressWheel = findViewById(R.id.progressWheel);
+
+        progressWheel.setVisibility(View.INVISIBLE);
 
         earthquakeLocationInfo = getSharedPreferences(getString(R.string.location_key),Context.MODE_PRIVATE);
         earthquakeMagnitudeInfo = getSharedPreferences(getString(R.string.magnitude_key),Context.MODE_PRIVATE);
@@ -55,6 +60,7 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         double magnitudeDouble = Double.parseDouble(currMagnitude);
         GradientDrawable magnitudeCircle = (GradientDrawable) magnitude.getBackground();
         int magnitudeInt = getMagnitudeColor(magnitudeDouble);
+
         magnitudeCircle.setColor(magnitudeInt);
         getMagnitudeDescription(magnitudeDouble);
 
@@ -62,6 +68,8 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
             Uri earthquakeLink = Uri.parse(urlString);
             Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeLink);
             startActivity(websiteIntent);
+            progressWheel.setVisibility(View.VISIBLE);
+            finish();
         });
 
     }

@@ -86,6 +86,13 @@
                 android:text="@string/linkButton"
                 android:textColor="#FFFFFF" />
 
+            <ProgressBar
+                android:id="@+id/progressWheel"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                style="?android:attr/progressBarStyle"
+                 />
+
         </LinearLayout>
     </ScrollView>
 
