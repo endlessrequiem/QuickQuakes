@@ -39,8 +39,6 @@ public class HistoricEarthquakesActivity extends AppCompatActivity {
 
         listPopulate();
 
-
-
         currLocation = this.getSharedPreferences(
                 getString(R.string.location_key), Context.MODE_PRIVATE);
         currMagnitude = this.getSharedPreferences(
@@ -105,6 +103,7 @@ public class HistoricEarthquakesActivity extends AppCompatActivity {
     }
 
     private void listPopulate() {
+        //Only need 9 or 10
         Earthquake valdivia = new Earthquake(9.6,
                 getString(R.string.valdivia),
                 -259980526000L,
@@ -118,6 +117,62 @@ public class HistoricEarthquakesActivity extends AppCompatActivity {
                 "https://en.wikipedia.org/wiki/1964_Alaska_earthquake");
 
         historicAdapter.add(alaska);
+
+        Earthquake indonesia = new Earthquake(9.1,
+                getString(R.string.indonesia),
+                1104080333000L,
+                "https://en.wikipedia.org/wiki/2004_Indian_Ocean_earthquake_and_tsunami");
+
+        historicAdapter.add(indonesia);
+
+        Earthquake tohoku = new Earthquake(8.8,
+                getString(R.string.tohoku2011),
+                1299883560000L,
+                "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami");
+
+        historicAdapter.add(tohoku);
+
+        Earthquake ecuadorColombia = new Earthquake(8.8,
+                getString(R.string.ecuadorColumbia),
+                -2017029600000L,
+                "https://en.wikipedia.org/wiki/1906_Ecuador%E2%80%93Colombia_earthquake");
+
+        historicAdapter.add(ecuadorColombia);
+
+        Earthquake kurilIsland = new Earthquake(8.5,
+                getString(R.string.kurilIsland),
+                -196220521000L,
+                "https://en.wikipedia.org/wiki/1963_Kuril_Islands_earthquake");
+
+        historicAdapter.add(kurilIsland);
+
+        Earthquake sichuan = new Earthquake(8.0,
+                getString(R.string.sichuan),
+                1228516081000L,
+                "https://en.wikipedia.org/wiki/2008_Sichuan_earthquake");
+
+        historicAdapter.add(sichuan);
+
+        Earthquake sf1906 = new Earthquake(7.9,
+                getString(R.string.sanFrancisco),
+                -2010394080000L,
+                "https://en.wikipedia.org/wiki/1906_San_Francisco_earthquake");
+
+        historicAdapter.add(sf1906);
+
+        Earthquake sf1989 = new Earthquake(6.9,
+                getString(R.string.sanFrancisco),
+                624672255000L,
+                "https://en.wikipedia.org/wiki/1989_Loma_Prieta_earthquake");
+
+        historicAdapter.add(sf1989);
+
+        Earthquake hanshin = new Earthquake(6.9,
+                getString(R.string.hanshin),
+                790264013000L,
+                "https://en.wikipedia.org/wiki/Great_Hanshin_earthquake");
+
+        historicAdapter.add(hanshin);
     }
 
     public boolean onSupportNavigateUp() {

@@ -72,5 +72,12 @@
     <!-- Historic Earthquake locations -->
     <string name="valdivia">City of Valdivia, Chile</string>
     <string name="pwsAlaska">Prince William Sound, Alaska</string>
+    <string name="indonesia">West Coast of Northern Sumatra, Indonesia</string>
+    <string name="ecuadorColumbia">City of Esmeraldas, Ecuador</string>
+    <string name="kurilIsland">Kuril Islands</string>
+    <string name="sanFrancisco">City of San Franscisco, CA</string>
+    <string name="sichuan">50 mi West-Northwest of Chengdu, Sichuan</string>
+    <string name="tohoku2011">"43 mi east of the Oshika Peninsula of Tōhoku, Japan "</string>
+    <string name="hanshin">City of Kobe, Japan</string>
 
 </resources>
